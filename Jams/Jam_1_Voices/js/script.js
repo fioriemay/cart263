@@ -2,8 +2,9 @@
 Drunk Driving
 By Fiorie Rousselot-Barbe
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
+notes:
+switch statement for voice, maze example (examples channel)
+monday 1-3 office hours wednesday 3-5 stphn
 */
 
 "use strict";
