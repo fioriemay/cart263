@@ -11,6 +11,7 @@ monday 1-3 office hours wednesday 3-5 stphn
 
 //listens to user's voice
 let userVoice = new p5.SpeechRec();
+let currentCommand;
 
 //using states to go between title screen and game
 let state = 'simulation'; // can be : title, simulation, end.
@@ -48,7 +49,7 @@ function setup() {
     //canvas dimensions
     createCanvas(500, 500);
 
-    userVoice.onResult = printResult;
+    userVoice.onResult = moveUser;
     userVoice.continuous = true;
     userVoice.start();
 }
@@ -76,15 +77,16 @@ function draw() {
     }
 }
 
-function printResult(){
+/*function printResult(){
     
     if (userVoice.resultValue === true) {
         
-        console.log(userVoice.resultString);
+       console.log(userVoice.resultString);
+       
 
 }
 
-}
+}*/
 
 function title(){
 
@@ -102,6 +104,8 @@ function simulation(){
     background(161, 197, 255);
     
     displayGoal();
+    
+    //moveUser();
     displayUser();
 
 }
@@ -136,9 +140,38 @@ function displayGoal(){
     square(goalSquare.x, goalSquare.y, goalSquare.size);
 }
 
+function moveUser(){
+    
+    currentCommand = userVoice.resultValue;
+    /*if (userVoice.resultValue === true) {
+        
+        console.log(userVoice.resultString);
+        
+ 
+ }*/
+       
+    switch(userVoice.resultValue){
+        case "left":
+            userCar.x = userCar.x +50;
+        break;
+        /*case "right":
+           //
+        break;
+        case "up":
+            //
+        break;
+        case "down":
+            //
+        break;*/
+
+    }
+
+}
+
 function displayUser(){
 
     noStroke();
     fill(userCar.r, userCar.g, userCar.b);
     circle(userCar.x, userCar.y, userCar.size);
 }
+
