@@ -2,9 +2,7 @@
 Drunk Driving
 By Fiorie Rousselot-Barbe
 
-notes:
-switch statement for voice, maze example (examples channel)
-monday 1-3 office hours wednesday 3-5 stphn
+DESCRIPTION
 */
 
 "use strict";
@@ -13,24 +11,29 @@ monday 1-3 office hours wednesday 3-5 stphn
 let userVoice = new p5.SpeechRec();
 let currentCommand;
 
+//speech synthesizer will say where the car is actually going
+const computerVoice = new p5.Speech();
+
 //using states to go between title screen and game
-let state = 'simulation'; // can be : title, simulation, end.
+let state = 'title'; // can be : title, simulation, end.
 
 let userCar = {
 
-    x:100,
-    y:200,
+    x:80,
+    y:80,
     size:45,
     r:222,
     g:107,
     b:0,
+    ap:undefined,
+
 
 }
 
 let goalSquare = {
 
-    x: 30,
-    y: 30,
+    x: undefined,
+    y: undefined,
     size: 60,
     r:94,
     g:17,
@@ -39,6 +42,8 @@ let goalSquare = {
 }
 
 function preload() {
+
+userCar.ap = loadImage('assets/images/carpng.png');
 
 }
 
@@ -52,6 +57,8 @@ function setup() {
     userVoice.onResult = moveUser;
     userVoice.continuous = true;
     userVoice.start();
+
+    setGoal();
 }
 
 
@@ -77,25 +84,29 @@ function draw() {
     }
 }
 
-/*function printResult(){
-    
-    if (userVoice.resultValue === true) {
-        
-       console.log(userVoice.resultString);
-       
+function setGoal(){
+
+    goalSquare.x = random(50,450);
+    goalSquare.y = random(50,450);
 
 }
-
-}*/
 
 function title(){
 
     push();
     background(161, 197, 255);
-    textSize(64);
+    textSize(48);
     fill(56, 94, 59);
     textAlign(CENTER, CENTER);
-    text('Click to Play!', width/2, height/2);
+    textStyle(BOLD);
+    text('Drunk Driving', width/2, 200);
+    textSize(30);
+    text('Click to Play!', width/2, 460);
+    textStyle(NORMAL);
+    textSize(25);
+    text('Try using voice command ', width/2, 240);
+    text('to tell the car where to go!', width/2, 260);
+    text('Up,Down,Left,Right', width/2, 325);
     pop();
 }
 
@@ -105,8 +116,9 @@ function simulation(){
     
     displayGoal();
     
-    //moveUser();
+    //we move user via the voice input's onResult
     displayUser();
+    checkOverlap();
 
 }
 
@@ -131,6 +143,7 @@ function mousePressed(){
         state = 'simulation';
 
     }
+    
 }
 
 function displayGoal(){
@@ -142,36 +155,48 @@ function displayGoal(){
 
 function moveUser(){
     
-    currentCommand = userVoice.resultValue;
-    /*if (userVoice.resultValue === true) {
-        
-        console.log(userVoice.resultString);
-        
- 
- }*/
+    currentCommand = userVoice.resultString;
+   
        
-    switch(userVoice.resultValue){
-        case "left":
-            userCar.x = userCar.x +50;
+    switch(currentCommand){
+        case "down": //left goes down
+            userCar.y = userCar.y + 14;
+            //computerVoice.speak('down');
+            
         break;
-        /*case "right":
-           //
+        case "up": //right goes up
+            userCar.y = userCar.y - 14;
         break;
-        case "up":
-            //
+        case "left": //up goes left
+            userCar.x = userCar.x - 14;
         break;
-        case "down":
-            //
-        break;*/
+        case "right": //down goes right
+            userCar.x = userCar.x + 14;
+        break;
 
     }
 
+    
+
+}
+
+function checkOverlap(){
+
+    let d = dist(userCar.x, userCar.y, goalSquare.x, goalSquare.y);
+    if (d < userCar.size + 10){
+
+        state ='end';
+        //console.log(d);
+
+    }
 }
 
 function displayUser(){
 
     noStroke();
     fill(userCar.r, userCar.g, userCar.b);
-    circle(userCar.x, userCar.y, userCar.size);
+    //circle(userCar.x, userCar.y, userCar.size);
+    image(userCar.ap, userCar.x, userCar.y, 50, 50);
+    
 }
 
