@@ -1,3 +1,6 @@
-# Template p5 project
+# Drunk Driving
+# By Fiorie Rousselot-Barbe
 
-This is the README file for the entire project. For more official projects you should write information here about the nature of the project, your name, any special explanations of how the project works, etc.
+You had a few drinks before driving your car back home(And you shouldn't have).
+Driving under the influence of alcohol is a terrible idea -- But thanfully this is just a simulation!
+Try driving the car back home (If you get too confused, you can sober up by looking at the comments in the switch statement in script.js)

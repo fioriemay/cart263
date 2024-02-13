@@ -2,7 +2,9 @@
 Drunk Driving
 By Fiorie Rousselot-Barbe
 
-DESCRIPTION
+You had a few drinks before driving your car back home(And you shouldn't have).
+Driving under the influence of alcohol is a terrible idea -- But thanfully this is just a simulation!
+Try driving the car back home (If you get too confused, you can sober up by looking at the comments in the switch statement far below)
 */
 
 "use strict";
@@ -17,6 +19,7 @@ const computerVoice = new p5.Speech();
 //using states to go between title screen and game
 let state = 'title'; // can be : title, simulation, end.
 
+//user's car, ap = appearance (used for loadimage)
 let userCar = {
 
     x:80,
@@ -30,6 +33,7 @@ let userCar = {
 
 }
 
+//home coordinates / goal, x and y left undefined so we can randomize them
 let goalSquare = {
 
     x: undefined,
@@ -43,6 +47,7 @@ let goalSquare = {
 
 function preload() {
 
+    //loading the car's image (hand drawn myself)
 userCar.ap = loadImage('assets/images/carpng.png');
 
 }
@@ -58,6 +63,7 @@ function setup() {
     userVoice.continuous = true;
     userVoice.start();
 
+    //calling this function which randomizes the goal's coordinates
     setGoal();
 }
 
@@ -65,7 +71,7 @@ function setup() {
 
 function draw() {
 
-    //setting states
+    //setting states, used for title screen/end/simulation
     if(state === 'title'){
 
         title();
@@ -86,6 +92,7 @@ function draw() {
 
 function setGoal(){
 
+    // randomizing the goal's coordinates somewhere in the canvas that makes sense (we dont want it on the complete edge)
     goalSquare.x = random(50,450);
     goalSquare.y = random(50,450);
 
@@ -93,6 +100,7 @@ function setGoal(){
 
 function title(){
 
+    //title screen, played around with text styles and coordinates
     push();
     background(161, 197, 255);
     textSize(48);
@@ -112,17 +120,19 @@ function title(){
 
 function simulation(){
     
+    //our simulation, we call display functions and check overlap to determine if the game should end
     background(161, 197, 255);
     
     displayGoal();
     
-    //we move user via the voice input's onResult
+    //we move user via the voice input's onResult so no need to call moveUser
     displayUser();
     checkOverlap();
 
 }
 
 function gameEnd(){
+    // game end screen
     push();
     background(161, 197, 255);
     textSize(64);
@@ -156,22 +166,26 @@ function displayGoal(){
 function moveUser(){
     
     currentCommand = userVoice.resultString;
-   
+   //current command = what the user just commanded to the car
        
+   //the "drunk driving" commands, computer will repeat the actual direction you are going to you
     switch(currentCommand){
-        case "down": //left goes down
-            userCar.y = userCar.y + 14;
-            //computerVoice.speak('down');
+        case "down": //say down go right
+            userCar.x = userCar.x + 14;
+            computerVoice.speak('right');
             
         break;
-        case "up": //right goes up
-            userCar.y = userCar.y - 14;
-        break;
-        case "left": //up goes left
+        case "up": //say up go left
             userCar.x = userCar.x - 14;
+            computerVoice.speak('left');
         break;
-        case "right": //down goes right
-            userCar.x = userCar.x + 14;
+        case "left": //say left go down
+            userCar.y = userCar.y + 14;
+            computerVoice.speak('down');
+        break;
+        case "right": //say right go up
+            userCar.y = userCar.y - 14;
+            computerVoice.speak('up');
         break;
 
     }
@@ -182,6 +196,8 @@ function moveUser(){
 
 function checkOverlap(){
 
+    //using dist to check for overlap between the car and the goal
+    //if both overlap (the player made it to the end of the game), the game ends.
     let d = dist(userCar.x, userCar.y, goalSquare.x, goalSquare.y);
     if (d < userCar.size + 10){
 
@@ -195,7 +211,6 @@ function displayUser(){
 
     noStroke();
     fill(userCar.r, userCar.g, userCar.b);
-    //circle(userCar.x, userCar.y, userCar.size);
     image(userCar.ap, userCar.x, userCar.y, 50, 50);
     
 }
