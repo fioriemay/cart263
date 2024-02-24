@@ -20,6 +20,7 @@ const computerVoice = new p5.Speech();
 //state can be title or simulation
 let state = 'title';
 
+
 function preload() {
 
 }
@@ -107,6 +108,44 @@ function getSentimentVal(){
     const judgement = sentiment.predict(inputText);
     //we also log the value sentiment gave to the user's input
     console.log(judgement);
+}
+
+function displaySentiment(){
+
+    //the different messages depending on the rating of your day
+
+    if(judgement<=30){
+
+        console.log('sounds absolutely terrible!');
+    }
+
+    
+    else if(judgement>30 && judgement<=50){
+
+        console.log('thats pretty bad');
+    }
+
+    
+    else if(judgement>50 && judgement<=65){
+
+        console.log('that doesnt sound great');
+    }
+
+    
+    else if(judgement>65 && judgement<=79){
+
+        console.log('oh, average day then?');
+    }
+    
+    else if(judgement>79 && judgement<=95){
+
+        console.log('what a fun day right?');
+    }
+    
+    else if(judgement>95){
+
+        console.log('the perfect day!!');
+    }
 }
 
 function mousePressed(){
