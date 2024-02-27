@@ -90,6 +90,7 @@ function simulation(){
     text('test', width/2, 200);
    
     getSentimentVal();
+    //displaySentiment();
 
 }
 
@@ -108,9 +109,6 @@ function getSentimentVal(){
     const judgement = sentiment.predict(inputText);
     //we also log the value sentiment gave to the user's input
     console.log(judgement);
-}
-
-function displaySentiment(){
 
     //the different messages depending on the rating of your day
 
@@ -146,6 +144,11 @@ function displaySentiment(){
 
         console.log('the perfect day!!');
     }
+}
+
+function displaySentiment(){
+
+    
 }
 
 function mousePressed(){
