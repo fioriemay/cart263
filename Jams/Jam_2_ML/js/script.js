@@ -61,7 +61,7 @@ function draw() {
 }
 
 function title(){
-
+//title screen
     push();
     background(93, 62, 122);
     textSize(48);
@@ -81,16 +81,19 @@ function title(){
 
 function simulation(){
 
-    push();
-    background(93, 62, 122);
-    textSize(48);
-    fill(10, 4, 15);
-    textAlign(CENTER, CENTER);
-    textStyle(BOLD);
-    text('test', width/2, 200);
+    //displaying text to tell the user we are now in the simulation state
+        push();
+        background(93, 62, 122);
+        textSize(48);
+        fill(10, 4, 15);
+        textAlign(CENTER, CENTER);
+        textStyle(NORMAL);
+        textSize(25);
+        text('start talking :)', width/2, 240);
+        pop();
    
+    //calling the function that calculates the sentiment and displays text
     getSentimentVal();
-    //displaySentiment();
 
 }
 
@@ -108,48 +111,109 @@ function getSentimentVal(){
     //the numerical value created by sentiment, based off of what the user said.
     const judgement = sentiment.predict(inputText);
     //we also log the value sentiment gave to the user's input
-    console.log(judgement);
+    console.log(judgement.score);
 
     //the different messages depending on the rating of your day
+    //console log added for debugging purposes
 
-    if(judgement<=30){
+    if(judgement.score<=0.30){
+        
+        push();
+        background(93, 62, 122);
+        textSize(48);
+        fill(10, 4, 15);
+        textAlign(CENTER, CENTER);
+        textStyle(NORMAL);
+        textSize(25);
+        text('sounds absolutely terrible!', width/2, 240);
+        pop();
 
         console.log('sounds absolutely terrible!');
+        
     }
 
     
-    else if(judgement>30 && judgement<=50){
+    else if(judgement.score>0.30 && judgement.score<=0.50){
+       
+        push();
+        background(93, 62, 122);
+        textSize(48);
+        fill(10, 4, 15);
+        textAlign(CENTER, CENTER);
+        textStyle(NORMAL);
+        textSize(25);
+        text('thats pretty bad!', width/2, 240);
+        pop();
+        
 
         console.log('thats pretty bad');
     }
 
     
-    else if(judgement>50 && judgement<=65){
+    else if(judgement.score>0.50 && judgement.score<=0.65){
+        
+        push();
+        background(93, 62, 122);
+        textSize(48);
+        fill(10, 4, 15);
+        textAlign(CENTER, CENTER);
+        textStyle(NORMAL);
+        textSize(25);
+        text('that doesnt sound great...', width/2, 240);
+        pop();
+       
 
         console.log('that doesnt sound great');
     }
 
     
-    else if(judgement>65 && judgement<=79){
+    else if(judgement.score>0.65 && judgement.score<=0.79){
+
+        push();
+        background(93, 62, 122);
+        textSize(48);
+        fill(10, 4, 15);
+        textAlign(CENTER, CENTER);
+        textStyle(NORMAL);
+        textSize(25);
+        text('oh, average day then?', width/2, 240);
+        pop();
 
         console.log('oh, average day then?');
     }
     
-    else if(judgement>79 && judgement<=95){
+    else if(judgement.score>0.79 && judgement.score<=0.95){
+
+        push();
+        background(93, 62, 122);
+        textSize(48);
+        fill(10, 4, 15);
+        textAlign(CENTER, CENTER);
+        textStyle(NORMAL);
+        textSize(25);
+        text('what a fun day right?', width/2, 240);
+        pop();
 
         console.log('what a fun day right?');
     }
     
-    else if(judgement>95){
+    else if(judgement.score>0.95){
+
+        push();
+        background(93, 62, 122);
+        textSize(48);
+        fill(10, 4, 15);
+        textAlign(CENTER, CENTER);
+        textStyle(NORMAL);
+        textSize(25);
+        text('the perfect day!', width/2, 240);
+        pop();
 
         console.log('the perfect day!!');
     }
 }
 
-function displaySentiment(){
 
-    
-}
 
 function mousePressed(){
 
