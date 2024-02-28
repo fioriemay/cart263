@@ -1,3 +1,7 @@
-# Template p5 project
+# Talk To me
+# by Fiorie Rousselot-Barbe
 
-This is the README file for the entire project. For more official projects you should write information here about the nature of the project, your name, any special explanations of how the project works, etc.
+Tell the computer a sentence about your day, it will judge whether it is a good or bad day.
+The computer judges in its own way, and might see things differently than you do. Have fun!
+
+Uses Sentiment from ML5.JS
