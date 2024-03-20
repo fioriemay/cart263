@@ -1,6 +1,6 @@
 /**
-Title of Project
-Author Name
+Bubbles!
+Fiorie Rousselot-Barbe
 
 This is a template. You must fill in the title,
 author, and this description to match your project!
@@ -8,6 +8,8 @@ author, and this description to match your project!
 
 "use strict";
 
+//settings for our world
+//default arcade physics, set width and height of the scene, etc
 let config = {
 
     type: Phaser.AUTO,
