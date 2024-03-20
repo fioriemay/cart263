@@ -23,13 +23,24 @@ class Play extends Phaser.Scene{
 
         // world bounds
         const { x, y, width, height } = this.physics.world.bounds;
-
+        const shape = new Phaser.Geom.Ellipse(33, 67, 66, 133);
         //for loop setting position and velocity for each item in the array
         for (const bubble of this.bubbles.getChildren())
         {
             bubble.setRandomPosition(x, y, width, height);
             bubble.body.velocity.setToPolar(0.125 * Math.PI, Phaser.Math.FloatBetween(50, 100));
+
+            bubble.setInteractive(shape, Phaser.Geom.Ellipse.Contains);
+
+            bubble.on('pointerdown', () => {
+        
+                bubble.setAlpha([0]);
+                pop.play();
+
+            },this);
         }
+
+       
 
         //creating a camera in our scene so we can then add effects to it
         const camera = this.cameras.main;
