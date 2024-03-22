@@ -2,8 +2,7 @@
 Bubbles!
 Fiorie Rousselot-Barbe
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
+A relaxing, therapeutic experience. As you pop a bubble, imagine your worries going away.
 */
 
 "use strict";
@@ -22,4 +21,5 @@ let config = {
     scene: [Boot, Play]
 };
 
+//declaring a variable for our game
 let game = new Phaser.Game(config);

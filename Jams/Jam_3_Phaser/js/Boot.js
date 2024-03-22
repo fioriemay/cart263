@@ -18,6 +18,7 @@ class Boot extends Phaser.Scene{
         //created the sky myself in after effects
         this.load.image('sky', 'assets/images/sky.png');
 
+        //loading the pop sound effect
         this.load.audio('pop', 'assets/sounds/pop.mp3');
 
         //loading the play scene
