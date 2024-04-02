@@ -2,12 +2,17 @@
 Panda Dress up game Prototype
 by Fiorie Rousselot-Barbe
 
+Prototype
+
 */
 
 "use strict";
 
 //new speechRec to hear the user's voice
 let userVoice = new p5.SpeechRec();
+
+//to determine the string and the user input
+let currentSpeech;
 
 //using states to go between the title screen, game instructions and the simulation itself
 let state = 'title'; // can be : title, instructions, simulation.
@@ -48,12 +53,13 @@ else if (state === 'instructions'){
     instructions();
 
 }
-/*
+
 else if (state === 'simulation'){
 
     simulation();
 
-}*/
+}
+
 
 }
 
@@ -85,7 +91,7 @@ function instructions(){
     textStyle(BOLD);
     text('Instructions', width/2, 200);
     textSize(30);
-    text('Click to Play!', width/2, 250);
+    text('tba', width/2, 250);
     textStyle(NORMAL);
     textSize(25);
     pop();
@@ -95,11 +101,24 @@ function instructions(){
 //game state
 function simulation(){
 
+    currentSpeech = userVoice.resultString;
+
+    //graphics will be imported here
+    // will most likely use a switch statement to display
+    // the different clothes depending on user input
+    // circle used as placeholder
+    background(189, 158, 222);
+
+    noStroke();
+    fill(0,0,0);
+    circle(width/2, height/2, 200);
 
 }
 
 //if the user presses the mouse button
 function mousePressed(){
+
+    // moving through states when the user presses the mouse
 
     if (state === 'title') {
 
