@@ -179,6 +179,9 @@ function pickOutfit(){
     currentSpeech = userVoice.resultString;
     //console.log(currentSpeech);
 
+    // here words were matched to describe each outfit
+    // words have been strategically chosen to try to avoid an overlap
+    // with a focus on adjectives rather than literal definitions
     if (!currentSpeech) {
     
         return;
@@ -239,12 +242,14 @@ function mousePressed(){
 
     // moving through states when the user presses the mouse
 
+    //if we click on the title page, go to instructions page
     if (state === 'title') {
 
         state = 'instructions';
 
     }
 
+    //if we click on the instructions page, start the simulation
     else if(state === 'instructions'){
 
         state = 'simulation';
