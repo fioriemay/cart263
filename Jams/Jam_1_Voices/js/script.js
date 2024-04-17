@@ -173,19 +173,23 @@ function moveUser(){
         case "down": //say down go right
             userCar.x = userCar.x + 14;
             computerVoice.speak('right');
+            console.log(currentCommand);
             
         break;
         case "up": //say up go left
             userCar.x = userCar.x - 14;
             computerVoice.speak('left');
+            console.log(currentCommand);
         break;
         case "left": //say left go down
             userCar.y = userCar.y + 14;
             computerVoice.speak('down');
+            console.log(currentCommand);
         break;
         case "right": //say right go up
             userCar.y = userCar.y - 14;
             computerVoice.speak('up');
+            console.log(currentCommand);
         break;
 
     }

@@ -1,8 +1,12 @@
 /**
-Panda Dress up game Prototype
+Mochi Dress-Up
 by Fiorie Rousselot-Barbe
 
-Prototype
+In this game, you must help Mochi pick an outfit for her day.
+Use voice commands to describe an outfit to Mochi.
+Use adjectives that describe the vibe of the outfit rather than exact specifics. Mochi has her own sense of style and does not like
+being told what to do.
+(E.g.: "Wear something warm!", "Wear something cozy!", "Wear something cute!")
 
 */
 
@@ -11,15 +15,35 @@ Prototype
 //new speechRec to hear the user's voice
 let userVoice = new p5.SpeechRec();
 
+//speech synthesizer
+const computerVoice = new p5.Speech();
+
+
 //to determine the string and the user input
 let currentSpeech;
 
 //using states to go between the title screen, game instructions and the simulation itself
 let state = 'title'; // can be : title, instructions, simulation.
 
+//declaring the random variable that determines the scenario
+let randomScenario;
+let scenarioChoice;
+
+//declaring image variables
+
+let catScene;
+let warmOutfit;
+
+
 function preload() {
 
     //will load the images here!!
+    // variable = loadImage('assets/images/IMAGE.png');
+
+    catScene = loadImage('assets/images/catBG.png');
+    warmOutfit = loadImage('assets/images/warmoutfit.png');
+
+    
 }
 
 
@@ -32,9 +56,19 @@ function setup() {
     //we are making the voice input continuous
     //and letting it start in setup
     //onresult tba!!
-    userVoice.onResult = //;
+   // userVoice.onResult = //;
     userVoice.continuous = true;
     userVoice.start();
+
+    //picking a random scenario (see chooseScenario function for more)
+    randomScenario = [1,2,3];
+    scenarioChoice = random(randomScenario);
+
+    //console.log(computerVoice.listVoices());
+    computerVoice.setPitch(1.17);
+    computerVoice.setRate(1);
+    computerVoice.setVoice('Google UK English Female');
+    
 }
 
 
@@ -72,7 +106,7 @@ function title(){
     fill(230, 209, 232);
     textAlign(CENTER, CENTER);
     textStyle(BOLD);
-    text('Panda Dress-Up', width/2, 200);
+    text('Mochi Dress-Up', width/2, 200);
     textSize(30);
     text('Click to Play!', width/2, 250);
     textStyle(NORMAL);
@@ -100,20 +134,60 @@ function instructions(){
 
 //game state
 function simulation(){
+    
+    background(catScene);
 
-    currentSpeech = userVoice.resultString;
+    //fill(255, 255, 255);
+    //text(mouseX + ","+ mouseY, 20, 20);
 
-    //graphics will be imported here
-    // will most likely use a switch statement to display
-    // the different clothes depending on user input
-    // circle used as placeholder
-    background(189, 158, 222);
-
-    noStroke();
-    fill(0,0,0);
-    circle(width/2, height/2, 200);
+    chooseScenario();
+    pickOutfit();
+    
+    image(warmOutfit,0,0);
 
 }
+
+function chooseScenario(){
+
+
+    if(scenarioChoice == 1){
+
+        //had to change the spelling of Mochi for voice to pronounce it correctly
+        computerVoice.speak('Moh-chi is going to get a latte. It is cold outside.');
+        //we set the number as 5 so that the voice does not loop
+        scenarioChoice =5;
+
+    }
+
+    else if(scenarioChoice == 2){
+
+        computerVoice.speak('Moh-chi is going shopping with her friends. It is warm outside.');
+        //we set the number as 5 so that the voice does not loop
+        scenarioChoice =5;
+
+    }
+
+    else if(scenarioChoice ==3){
+        
+        computerVoice.speak('Moh-chi is going to class. She just woke up and is tired.');
+        //we set the number as 5 so that the voice does not loop
+        scenarioChoice =5;
+
+    }
+
+    
+}
+
+function pickOutfit(){
+
+    currentSpeech = userVoice.resultString;
+    //console.log(currentSpeech);
+
+    if (currentSpeech.includes("pink")) {
+        console.log("pink was heard");
+     }
+}
+
 
 //if the user presses the mouse button
 function mousePressed(){
