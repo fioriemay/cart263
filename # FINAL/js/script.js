@@ -40,6 +40,9 @@ let cuteOutfit;
 let effortlessOutfit;
 let casualOutfit;
 
+let titleScreen;
+let instructionPage;
+
 
 function preload() {
 
@@ -53,6 +56,9 @@ function preload() {
     cuteOutfit = loadImage('assets/images/cuteoutfit.png');
     effortlessOutfit = loadImage('assets/images/effortlessoutfit.png');
     casualOutfit = loadImage('assets/images/casualoutfit.png');
+
+    titleScreen = loadImage('assets/images/mochititle.png');
+    instructionPage = loadImage('assets/images/instructionpage.png');
 
     
 }
@@ -111,35 +117,14 @@ else if (state === 'simulation'){
 //title state
 function title(){
 
-    push();
-    background(232, 160, 190);
-    textSize(48);
-    fill(230, 209, 232);
-    textAlign(CENTER, CENTER);
-    textStyle(BOLD);
-    text('Mochi Dress-Up', width/2, 200);
-    textSize(30);
-    text('Click to Play!', width/2, 250);
-    textStyle(NORMAL);
-    textSize(25);
-    pop();
+    image(titleScreen,0,0);
 
 }
 
 //how to play/game instructions state
 function instructions(){
-    push();
-    background(232, 160, 190);
-    textSize(48);
-    fill(230, 209, 232);
-    textAlign(CENTER, CENTER);
-    textStyle(BOLD);
-    text('Instructions', width/2, 200);
-    textSize(30);
-    text('tba', width/2, 250);
-    textStyle(NORMAL);
-    textSize(25);
-    pop();
+    
+    image(instructionPage,0,0);
 
 }
 
