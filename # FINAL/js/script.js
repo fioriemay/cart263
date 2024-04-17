@@ -33,15 +33,26 @@ let scenarioChoice;
 
 let catScene;
 let warmOutfit;
+let comfyOutfit;
+let coolOutfit;
+let cozyOutfit;
+let cuteOutfit;
+let effortlessOutfit;
+let casualOutfit;
 
 
 function preload() {
 
-    //will load the images here!!
-    // variable = loadImage('assets/images/IMAGE.png');
-
+    // loading the images for the scene and the outfits
+    //all outfits/assets hand-drawn and cut into PNG's
     catScene = loadImage('assets/images/catBG.png');
     warmOutfit = loadImage('assets/images/warmoutfit.png');
+    comfyOutfit = loadImage('assets/images/comfyoutfit.png');
+    coolOutfit = loadImage('assets/images/cooloutfit.png');
+    cozyOutfit = loadImage('assets/images/cozyoutfit.png');
+    cuteOutfit = loadImage('assets/images/cuteoutfit.png');
+    effortlessOutfit = loadImage('assets/images/effortlessoutfit.png');
+    casualOutfit = loadImage('assets/images/casualoutfit.png');
 
     
 }
@@ -153,7 +164,7 @@ function chooseScenario(){
     if(scenarioChoice == 1){
 
         //had to change the spelling of Mochi for voice to pronounce it correctly
-        computerVoice.speak('Moh-chi is going to get a latte. It is cold outside.');
+        computerVoice.speak('Moh-chi is going to get a latte.');
         //we set the number as 5 so that the voice does not loop
         scenarioChoice =5;
 
@@ -161,7 +172,7 @@ function chooseScenario(){
 
     else if(scenarioChoice == 2){
 
-        computerVoice.speak('Moh-chi is going shopping with her friends. It is warm outside.');
+        computerVoice.speak('Moh-chi is going shopping with her friends.');
         //we set the number as 5 so that the voice does not loop
         scenarioChoice =5;
 
@@ -189,22 +200,52 @@ function pickOutfit(){
       }
 
       // WARM outfit
-    else if (currentSpeech.includes("warm")) {
+    else if (currentSpeech.includes("warm") || currentSpeech.includes("toasty") || currentSpeech.includes("scarf") || currentSpeech.includes("puffer")) {
         console.log(currentSpeech);
         image(warmOutfit,0,0);
      }
 
      // COZY outfit
 
+     else if (currentSpeech.includes("cozy") || currentSpeech.includes("snug") || currentSpeech.includes("homey") || currentSpeech.includes("modest")) {
+        console.log(currentSpeech);
+        image(cozyOutfit,0,0);
+     }
+
      // CUTE outfit
+
+     else if (currentSpeech.includes("cute") || currentSpeech.includes("sweet") || currentSpeech.includes("adorable") || currentSpeech.includes("girly") || currentSpeech.includes("lolita")) {
+        console.log(currentSpeech);
+        image(cuteOutfit,0,0);
+     }
 
      // COMFY outfit
 
+     else if (currentSpeech.includes("comfortable") || currentSpeech.includes("relax") || currentSpeech.includes("convenient") ||currentSpeech.includes("easy") || currentSpeech.includes("comfy") || currentSpeech.includes("laid-back")) {
+        console.log(currentSpeech);
+        image(comfyOutfit,0,0);
+     }
+
      // EFFORTLESS outfit
+
+     else if (currentSpeech.includes("effortless") || currentSpeech.includes("classic") || currentSpeech.includes("chic") || currentSpeech.includes("elegant") ) {
+        console.log(currentSpeech);
+        image(effortlessOutfit,0,0);
+     }
 
      // COOL outfit
 
+     else if (currentSpeech.includes("cool") || currentSpeech.includes("trendy") || currentSpeech.includes("loose") ||currentSpeech.includes("long skirt") || currentSpeech.includes("flowy")) {
+        console.log(currentSpeech);
+        image(coolOutfit,0,0);
+     }
+
      // CASUAL outfit
+
+     else if (currentSpeech.includes("casual") || currentSpeech.includes("simple") || currentSpeech.includes("cargo pants") || currentSpeech.includes("tank")) {
+        console.log(currentSpeech);
+        image(casualOutfit,0,0);
+     }
 }
 
 
