@@ -143,7 +143,7 @@ function simulation(){
     chooseScenario();
     pickOutfit();
     
-    image(warmOutfit,0,0);
+    
 
 }
 
@@ -183,9 +183,28 @@ function pickOutfit(){
     currentSpeech = userVoice.resultString;
     //console.log(currentSpeech);
 
-    if (currentSpeech.includes("pink")) {
-        console.log("pink was heard");
+    if (!currentSpeech) {
+    
+        return;
+      }
+
+      // WARM outfit
+    else if (currentSpeech.includes("warm")) {
+        console.log(currentSpeech);
+        image(warmOutfit,0,0);
      }
+
+     // COZY outfit
+
+     // CUTE outfit
+
+     // COMFY outfit
+
+     // EFFORTLESS outfit
+
+     // COOL outfit
+
+     // CASUAL outfit
 }
 
 
